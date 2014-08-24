@@ -1,112 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Stock Forecast</title>
-  <meta charset="utf-8">
-  <meta name="description" content="Stock Forecast">
-  <meta name="author" content="Mike Chu">
-  <meta name="generator" content="slidify" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
-    media="only screen and (max-device-width: 480px)" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
-  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
-<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
-
-  
-  <!-- Grab CDN jQuery, fall back to local if offline -->
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
-  <script data-main="libraries/frameworks/io2012/js/slides" 
-    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
-  </script>
-  
-  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
-<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
-<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
-<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
-
-
-</head>
-<body style="opacity: 0">
-  <slides class="layout-widescreen">
+---
+title       : Stock Forecast
+subtitle    : A Shiny Web Application
+author      : Mike Chu
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
     
-    <!-- LOGO SLIDE -->
-        <slide class="title-slide segue nobackground">
-  <hgroup class="auto-fadein">
-    <h1>Stock Forecast</h1>
-    <h2>A Shiny Web Application</h2>
-    <p>Mike Chu<br/></p>
-  </hgroup>
-  <article></article>  
-</slide>
+## Introduction
     
+This application is using Rob Hyndman's BATS forecasting model
+and trying to forecast the stock price 3 days in future.
 
-    <!-- SLIDES -->
-    <slide class="" id="slide-1" style="background:;">
-  <hgroup>
-    <h2>Introduction</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>This application is using Rob Hyndman&#39;s BATS forecasting model
-and trying to forecast the stock price 3 days in future.</p>
-
-<p>Stock price is a typical <strong>Time Series</strong> data. BATS model is exploiting
+Stock price is a typical **Time Series** data. BATS model is exploiting
 the complex seasonal patterns in the data with exponential smoothing and
 performing the forecast. In case you are interested, you could reference
-this journal.</p>
+this journal.
 
-<p><a href="http://robjhyndman.com/papers/ComplexSeasonality.pdf">Forecasting time series with complex seasonal patterns using exponential smoothing</a></p>
+[Forecasting time series with complex seasonal patterns using exponential smoothing](http://robjhyndman.com/papers/ComplexSeasonality.pdf)
 
-<h3>Anything more interesting than looking into the future?</h3>
+### Anything more interesting than looking into the future?
 
-<p>Visit the application online here now at:</p>
+Visit the application online here now at:
 
-<h3><a href="http://mike-chu.shinyapps.io/demo">Stock Forecast</a></h3>
+### [Stock Forecast](http://mike-chu.shinyapps.io/demo)
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+---&twocol w1:60% w2:40%
 
-<slide class="" id="slide-2" style="background:;">
-  <hgroup>
-    <h2>Data Source</h2>
-  </hgroup>
-  <article data-timings="">
-    
-<div style='float:left;width:48%;' class='centered'>
-  <p>This application is using R&#39;s <strong>quantmod</strong> package. Users will specify 
+## Data Source
+
+*** =left
+This application is using R's **quantmod** package. Users will specify 
 the stock symbols and the data range as source for the forecast. We will
 download the closing price information from Yahoo finance webpage and
-provide a time series chart for data visualization.</p>
+provide a time series chart for data visualization.
 
-<p>As with any data prediction, we should have a good data source that could
+As with any data prediction, we should have a good data source that could
 show us some patterns for the prediction. User can observe in the chart if
-there are any seasonal patterns for the forecast.</p>
+there are any seasonal patterns for the forecast.
 
-</div>
-<div style='float:right;width:48%;'>
-  <p><img src="assets/fig/quantmod.png" alt="plot of chunk quantmod"> </p>
+*** =right
+![plot of chunk quantmod](assets/fig/quantmod.png) 
 
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-3" style="background:;">
-  <hgroup>
-    <h2>Interactive Plot with NVD3.js</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>NVD3 has a very interactive line chart with view finder. You can find selective legend,
+---
+    
+## Interactive Plot with NVD3.js
+    
+NVD3 has a very interactive line chart with view finder. You can find selective legend,
 mouse-over focus to show data points at top chart and the view finder for time range
-at the bottom. It is making the application much more appealing.</p>
+at the bottom. It is making the application much more appealing.
+
 
 <div id = 'chart1' class = 'rChart nvd3'></div>
-
 <script type='text/javascript'>
  $(document).ready(function(){
       drawchart1()
@@ -2553,68 +2502,16 @@ at the bottom. It is making the application much more appealing.</p>
     };
 </script>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-4" style="background:;">
-  <hgroup>
-    <h2>BATS model (forecast)</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>BATS is an exponential smoothing state space model with Box-Cox transformation, ARMA errors,
+---
+    
+## BATS model (forecast)
+    
+BATS is an exponential smoothing state space model with Box-Cox transformation, ARMA errors,
 Trend and Seasonal components. We can use this to forecast 3 days in horizon and with 95%
-confidence level for prediction levels.</p>
+confidence level for prediction levels.
 
-<pre><code class="r">fit &lt;- bats(data.df$ClosingPrice, use.parallel=FALSE)
-fcast &lt;- forecast(fit, h=3, level=95)
-</code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-    <slide class="backdrop"></slide>
-  </slides>
-  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
-    <ul>
-      <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Introduction'>
-         1
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Data Source'>
-         2
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Interactive Plot with NVD3.js'>
-         3
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='BATS model (forecast)'>
-         4
-      </a>
-    </li>
-  </ul>
-  </div>  <!--[if IE]>
-    <script 
-      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
-    </script>
-    <script>CFInstall.check({mode: 'overlay'});</script>
-  <![endif]-->
-</body>
-  <!-- Load Javascripts for Widgets -->
-  
-  <!-- LOAD HIGHLIGHTER JS FILES -->
-  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
-   
-  </html>
+```r
+fit <- bats(data.df$ClosingPrice, use.parallel=FALSE)
+fcast <- forecast(fit, h=3, level=95)
+```
