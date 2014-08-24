@@ -27,7 +27,7 @@ this journal.
 
 Visit the application online here now at:
 
-### [Stock Forecast](http://mike-chu.shinyapps.io/demo)
+### [Stock Forecast](http://mike-chu.shinyapps.io/stockForecast)
 
 ---&twocol w1:60% w2:40%
 
