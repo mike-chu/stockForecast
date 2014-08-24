@@ -83,7 +83,6 @@ pred <- data.frame(Date=max(data.df$Date)+1:3,
                    ForecastHighB=round(fcast$upper,2))
 data.df <- rbind(data.df, pred)
 data.melt <- melt(data.df, id.vars=1)
-
 df <- data.melt
 n1 <- nPlot(value ~ Date, group = 'variable',
             data = df,
